@@ -15,7 +15,13 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "docker:build": "docker build -t post-transactor_frontend .",
+    "docker:run": "docker run -it --name post-transactor_frontend -d -p 3000:3000 post-transactor_frontend",
+    "docker:start": "npm run docker:build && npm run docker:run",
+    "docker:rm": "docker rm --force post-transactor_frontend && docker image rm post-transactor_frontend",
+    "docker:stop": "docker container stop post-transactor_frontend && npm run docker:rm",
+    "docker:conn": "docker exec -it post-transactor_frontend sh"
   },
   "eslintConfig": {
     "extends": [
