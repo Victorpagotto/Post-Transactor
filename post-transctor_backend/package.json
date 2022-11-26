@@ -2,9 +2,17 @@
   "name": "post-transctor_backend",
   "version": "1.0.0",
   "description": "Frontend for post-transactor app.\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001bBackend\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001bd for post-transactoor app.",
-  "main": "index.js",
+  "main": "./build/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --require ts-node/register ./src/tests/*.{test,spec}.ts --timeout 10000 --exit",
+    "build": "npx -y tsc",
+    "start": "node .",
+    "listen": "npm run build && npm start",
+    "docker-server:build": "docker build -t post-transactor_backend .",
+    "docker-server:run": "docker run -it --name post-transactor_backend -d -p 3001:3001 post-transactor_backend",
+    "docker-server:start": "npm run docker-server:build && npm run docker-server:run",
+    "docker-server:rm": "docker rm --force post-transactor_backend && docker image rm post-transactor_backend",
+    "docker-server:stop": "docker container stop post-transactor_backend && npm run docker-server:rm"
   },
   "author": "Victor Pagotto",
   "license": "ISC",

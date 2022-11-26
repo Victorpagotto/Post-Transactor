@@ -4,7 +4,7 @@ import { IConnectorDB, IPSQueryParams } from "./types";
 export default class DBManager implements IConnectorDB {
   protected pool: Pool;
   protected config: PoolConfig;
-  constructor(config: PoolConfig) {
+  constructor(config?: PoolConfig) {
     this.config = { ...config };
     this.pool = this._start();
   }
