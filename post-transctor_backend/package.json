@@ -8,11 +8,12 @@
     "build": "npx -y tsc",
     "start": "node .",
     "listen": "npm run build && npm start",
-    "docker-server:build": "docker build -t post-transactor_backend .",
-    "docker-server:run": "docker run -it --name post-transactor_backend -d -p 3001:3001 post-transactor_backend",
-    "docker-server:start": "npm run docker-server:build && npm run docker-server:run",
-    "docker-server:rm": "docker rm --force post-transactor_backend && docker image rm post-transactor_backend",
-    "docker-server:stop": "docker container stop post-transactor_backend && npm run docker-server:rm"
+    "docker:build": "docker build -t post-transactor_backend .",
+    "docker:run": "docker run -it --name post-transactor_backend -d -p 3001:3001 post-transactor_backend",
+    "docker:start": "npm run docker:build && npm run docker:run",
+    "docker:rm": "docker rm --force post-transactor_backend && docker image rm post-transactor_backend",
+    "docker:stop": "docker container stop post-transactor_backend && npm run docker:rm",
+    "docker:conn": "docker exec -it post-transactor_backend sh"
   },
   "author": "Victor Pagotto",
   "license": "ISC",
