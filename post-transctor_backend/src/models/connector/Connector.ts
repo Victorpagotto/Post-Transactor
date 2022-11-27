@@ -29,7 +29,7 @@ export default class DBManager implements IConnectorDB {
         return client.query('SELECT NOW()')
         .then((_res) => {
           client.release();
-          console.log(`Running on port ${this.config.port || process.env.DB_PORT}`);
+          console.log(`DB set on port ${this.config.port || process.env.DB_PORT}`);
           return true;
         })
         .catch((err) => {
@@ -50,7 +50,7 @@ export default class DBManager implements IConnectorDB {
   }
 
   public async drain(): Promise<void> {
-    console.log(`Server on port ${this.config.port || process.env.DB_PORT} shut down.`);
+    console.log(`DB connection to port ${this.config.port || process.env.DB_PORT} shut down.`);
     return this.pool.end();
   }
 
