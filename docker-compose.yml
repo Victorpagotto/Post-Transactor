@@ -41,21 +41,22 @@ services:
       - DB_PORT=${DB_PORT_ENV}
       - APP_BACK_PORT=${APP_BACK_PORT_ENV}
   db_server:
-    image: postgres:${POSTGRES_VER}
-    container_name: db
+    build: ./db
+    container_name: post-transactor_db
     environment:
-      - POSTGRES_USER=${DB_USER_ENV}
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=${DB_PASSWORD_ENV}
       - POSTGRES_DB=${DB_NAME_ENV}
+      - DB_USERNAME=${DB_USER_ENV}
     ports:
       - ${DB_PORT_ENV}:5432
     restart: 'always'
     healthcheck:
-      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root" ]
+      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "postgres" ]
       timeout: 45s
       interval: 10s
       retries: 10
     cap_add:
       - SYS_NICE
     volumes:
-      - ./db:/var/lib/postgresql/data
+      - ./db/data:/var/lib/postgresql/data
