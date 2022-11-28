@@ -48,6 +48,7 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWORD_ENV}
       - POSTGRES_DB=${DB_NAME_ENV}
       - DB_USERNAME=${DB_USER_ENV}
+      - DB_SEED=${DB_SEED_ENV}
     ports:
       - ${DB_PORT_ENV}:5432
     restart: 'always'
